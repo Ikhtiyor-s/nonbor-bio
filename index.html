@@ -307,10 +307,6 @@
 </div>
 
 <script>
-// ============ CONFIG ============
-const API_URL = 'https://nonbor.uz';
-// ================================
-
 function getYouTubeId(url) {
     const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([^?&/#]+)/);
     return m ? m[1] : null;
@@ -343,75 +339,69 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
 });
 
-async function loadVideos() {
+function renderVideos(categories, videos) {
     const section = document.getElementById('videoSection');
     const loading = document.getElementById('videoLoading');
 
+    const activeCats = categories.filter(c => c.is_active).sort((a, b) => a.sort_order - b.sort_order);
+    const activeVideos = videos.filter(v => v.is_active);
+
+    if (activeVideos.length === 0) { loading.innerHTML = ''; return; }
+
+    const grouped = {};
+    activeVideos.forEach(v => {
+        const cat = v.category || 'boshqa';
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(v);
+    });
+
+    let html = '';
+    activeCats.forEach(cat => {
+        if (!grouped[cat.slug]) return;
+        const items = grouped[cat.slug].sort((a, b) => a.sort_order - b.sort_order);
+        const label = (cat.emoji ? cat.emoji + ' ' : '') + cat.name;
+
+        html += '<div class="category-label">' + label + '</div>';
+        html += '<div class="video-grid">';
+        items.forEach(v => {
+            const thumb = getThumb(v.video_url);
+            const attachIcon = v.attachment_url
+                ? (v.attachment_url.match(/\.(jpg|jpeg|png|webp|gif)$/i) ? '🖼' : '📄')
+                : '';
+            html += '<a class="video-card" href="javascript:void(0)" onclick="openModal(\'' +
+                v.title.replace(/'/g, "\\'") + "', '" + v.video_url.replace(/'/g, "\\'") + "')\">" +
+                '<div class="video-thumb">' +
+                (thumb ? '<img src="' + thumb + '" alt="' + v.title + '">' : '') +
+                '<div class="play-overlay"><div class="play-circle">' +
+                '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
+                '</div></div></div>' +
+                '<div class="video-info">' +
+                '<div class="video-title">' + v.title + '</div>' +
+                (v.description ? '<div class="video-desc">' + v.description + '</div>' : '') +
+                '</div>' +
+                (v.attachment_url
+                    ? '<a class="attachment-btn" href="' + v.attachment_url + '" target="_blank" onclick="event.stopPropagation()">' + attachIcon + ' Qo\'llanma</a>'
+                    : '') +
+                '</a>';
+        });
+        html += '</div>';
+    });
+
+    if (loading) loading.remove();
+    section.innerHTML += html;
+}
+
+async function loadVideos() {
+    const loading = document.getElementById('videoLoading');
     try {
-        const [catResp, vidResp] = await Promise.all([
-            fetch(API_URL + '/api/video-categories').then(r => r.json()),
-            fetch(API_URL + '/api/videos').then(r => r.json()),
-        ]);
-
-        const CATEGORIES = (catResp.success && catResp.categories)
-            ? catResp.categories.filter(c => c.is_active) : [];
-
-        if (!vidResp.success || !vidResp.videos || vidResp.videos.length === 0) {
-            loading.innerHTML = '';
-            return;
-        }
-
-        const videos = vidResp.videos.filter(v => v.is_active);
-        if (videos.length === 0) { loading.innerHTML = ''; return; }
-
-        const grouped = {};
-        videos.forEach(v => {
-            const cat = v.category || 'boshqa';
-            if (!grouped[cat]) grouped[cat] = [];
-            grouped[cat].push(v);
-        });
-
-        let html = '';
-        CATEGORIES.sort((a, b) => a.sort_order - b.sort_order).forEach(cat => {
-            if (!grouped[cat.slug]) return;
-            const items = grouped[cat.slug].sort((a, b) => a.sort_order - b.sort_order);
-            const label = (cat.emoji ? cat.emoji + ' ' : '') + cat.name;
-
-            html += '<div class="category-label">' + label + '</div>';
-            html += '<div class="video-grid">';
-
-            items.forEach(v => {
-                const thumb = getThumb(v.video_url);
-                const attachIcon = v.attachment_url
-                    ? (v.attachment_url.match(/\.(jpg|jpeg|png|webp|gif)$/i) ? '🖼' : '📄')
-                    : '';
-
-                html += '<a class="video-card" href="javascript:void(0)" onclick="openModal(\'' +
-                    v.title.replace(/'/g, "\\'") + "', '" + v.video_url.replace(/'/g, "\\'") + "')\">" +
-                    '<div class="video-thumb">' +
-                    (thumb ? '<img src="' + thumb + '" alt="' + v.title + '">' : '') +
-                    '<div class="play-overlay"><div class="play-circle">' +
-                    '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
-                    '</div></div></div>' +
-                    '<div class="video-info">' +
-                    '<div class="video-title">' + v.title + '</div>' +
-                    (v.description ? '<div class="video-desc">' + v.description + '</div>' : '') +
-                    '</div>' +
-                    (v.attachment_url
-                        ? '<a class="attachment-btn" href="' + v.attachment_url + '" target="_blank" onclick="event.stopPropagation()">' + attachIcon + ' Qo\'llanma</a>'
-                        : '') +
-                    '</a>';
-            });
-
-            html += '</div>';
-        });
-
-        loading.remove();
-        section.innerHTML += html;
-
+        // Statik data.json faylidan o'qish (CORS muammosi yo'q)
+        const resp = await fetch('./data.json?v=' + Date.now());
+        if (!resp.ok) throw new Error('data.json topilmadi');
+        const data = await resp.json();
+        renderVideos(data.categories || [], data.videos || []);
     } catch (err) {
-        loading.innerHTML = '';
-        console.log('Video API mavjud emas:', err.message);
+        if (loading) loading.innerHTML = '';
+        console.log('data.json mavjud emas:', err.message);
     }
 }
 
