@@ -1,258 +1,422 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nonbor</title>
-  <meta name="description" content="Nonbor — Telegram bot platformasi" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      background: #0A0F1E;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px 48px;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      top: -40%; left: -20%;
-      width: 80vw; height: 80vw;
-      background: radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      animation: pulse 8s ease-in-out infinite;
-    }
-    body::after {
-      content: '';
-      position: fixed;
-      bottom: -40%; right: -20%;
-      width: 70vw; height: 70vw;
-      background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      animation: pulse 10s ease-in-out infinite reverse;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.7; }
-    }
-    .container { width: 100%; max-width: 480px; position: relative; z-index: 1; }
-
-    /* Skeleton loader */
-    .skeleton { background: linear-gradient(90deg, #1E293B 25%, #253148 50%, #1E293B 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-    /* Profile */
-    .profile { text-align: center; margin-bottom: 32px; animation: fadeIn 0.5s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .avatar {
-      width: 88px; height: 88px; border-radius: 50%;
-      background: linear-gradient(135deg, #0EA5E9, #6366F1);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 40px; margin: 0 auto 16px;
-      box-shadow: 0 0 0 4px rgba(14,165,233,0.2), 0 8px 32px rgba(14,165,233,0.3);
-    }
-    .profile h1 { font-size: 26px; font-weight: 800; color: #F1F5F9; letter-spacing: -0.5px; }
-    .profile p { font-size: 14px; color: #64748B; margin-top: 6px; line-height: 1.5; }
-    .badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(14,165,233,0.1); border: 1px solid rgba(14,165,233,0.2);
-      color: #0EA5E9; font-size: 11px; font-weight: 600;
-      padding: 3px 10px; border-radius: 20px; margin-top: 10px;
-    }
-
-    /* Divider */
-    .divider { display: flex; align-items: center; gap: 10px; margin: 4px 0; }
-    .divider span { font-size: 11px; color: #334155; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
-    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
-
-    /* Link cards */
-    .links { display: flex; flex-direction: column; gap: 10px; }
-    .link-card {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 16px; border-radius: 16px;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.04);
-      transition: all 0.2s ease;
-      cursor: pointer;
-      animation: fadeIn 0.4s ease both;
-    }
-    .link-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.12); }
-    .link-card:active { transform: translateY(0) scale(0.99); }
-    .link-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0;
-    }
-    .link-info { flex: 1; min-width: 0; }
-    .link-title { font-size: 14px; font-weight: 700; color: #F1F5F9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .link-sub { font-size: 12px; color: #64748B; margin-top: 2px; }
-    .link-arrow { color: #334155; font-size: 18px; flex-shrink: 0; transition: color 0.2s, transform 0.2s; }
-    .link-card:hover .link-arrow { color: #94A3B8; transform: translateX(3px); }
-
-    /* Color themes */
-    .blue   { --clr: #0EA5E9; } .green { --clr: #10B981; }
-    .purple { --clr: #8B5CF6; } .yellow { --clr: #F59E0B; }
-    .red    { --clr: #EF4444; } .gray  { --clr: #64748B; }
-    .link-card { background: color-mix(in srgb, var(--clr, #0EA5E9) 8%, transparent); border-color: color-mix(in srgb, var(--clr, #0EA5E9) 20%, transparent); }
-    .link-card:hover { border-color: color-mix(in srgb, var(--clr, #0EA5E9) 40%, transparent); box-shadow: 0 4px 24px color-mix(in srgb, var(--clr, #0EA5E9) 15%, transparent); }
-    .link-icon { background: color-mix(in srgb, var(--clr, #0EA5E9) 18%, transparent); }
-
-    /* Video embed */
-    .video-modal {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.85); z-index: 1000;
-      align-items: center; justify-content: center;
-      padding: 20px;
-    }
-    .video-modal.open { display: flex; }
-    .video-wrap {
-      width: 100%; max-width: 680px; border-radius: 16px;
-      overflow: hidden; background: #000;
-      position: relative;
-    }
-    .video-wrap iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
-    .video-close {
-      position: absolute; top: -40px; right: 0;
-      color: #fff; font-size: 28px; cursor: pointer; line-height: 1;
-      background: none; border: none; padding: 4px 8px;
-    }
-
-    .footer { text-align: center; margin-top: 28px; color: #1E293B; font-size: 12px; }
-    .footer a { color: #334155; text-decoration: none; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div id="app">
-      <!-- Skeleton -->
-      <div class="profile">
-        <div class="skeleton" style="width:88px;height:88px;border-radius:50%;margin:0 auto 16px;"></div>
-        <div class="skeleton" style="width:140px;height:22px;margin:0 auto 8px;"></div>
-        <div class="skeleton" style="width:200px;height:14px;margin:0 auto;"></div>
-      </div>
-      <div class="links">
-        <div class="skeleton" style="height:68px;border-radius:16px;"></div>
-        <div class="skeleton" style="height:68px;border-radius:16px;"></div>
-        <div class="skeleton" style="height:68px;border-radius:16px;"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Video modal -->
-  <div class="video-modal" id="videoModal" onclick="closeVideo(event)">
-    <div class="video-wrap">
-      <button class="video-close" onclick="closeVideo(null, true)">✕</button>
-      <iframe id="videoFrame" src="" allowfullscreen allow="autoplay"></iframe>
-    </div>
-  </div>
-
-  <script>
-    // ─── Config ────────────────────────────────────────────────────────────────
-    // Backendingiz URLini shu yerga yozing:
-    const API_BASE = 'https://api.nonbor.uz';
-    // Local dev uchun: const API_BASE = 'http://localhost:8080';
-
-    // ─── Video embed ───────────────────────────────────────────────────────────
-    function getYoutubeEmbed(url) {
-      const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([^?&\/#]+)/);
-      return m ? `https://www.youtube.com/embed/${m[1]}?autoplay=1` : null;
-    }
-    function getDriveEmbed(url) {
-      const m = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-      return m ? `https://drive.google.com/file/d/${m[1]}/preview` : null;
-    }
-    function openVideo(embedUrl) {
-      document.getElementById('videoFrame').src = embedUrl;
-      document.getElementById('videoModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeVideo(e, force) {
-      if (!force && e && e.target !== document.getElementById('videoModal')) return;
-      document.getElementById('videoFrame').src = '';
-      document.getElementById('videoModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(null, true); });
-
-    // ─── Build link URL ─────────────────────────────────────────────────────────
-    function buildHref(link) {
-      if (link.link_type === 'phone') return `tel:${link.url.replace(/\s/g, '')}`;
-      return link.url;
-    }
-
-    // ─── Render ─────────────────────────────────────────────────────────────────
-    function renderPage(profile, links) {
-      // Update page title
-      document.title = profile.name;
-
-      // Group links by dividers (every 3 or by section)
-      const linksHtml = links.map((l, i) => {
-        const isVideo = l.link_type === 'youtube' || l.link_type === 'drive';
-        const embedUrl = l.link_type === 'youtube' ? getYoutubeEmbed(l.url) :
-                          l.link_type === 'drive' ? getDriveEmbed(l.url) : null;
-
-        let onclick = '';
-        let href = buildHref(l);
-        if (isVideo && embedUrl) {
-          onclick = `onclick="openVideo('${embedUrl.replace(/'/g,"\\'")}'); return false;"`;
-          href = '#';
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NonBor - Qo'llanma</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f5f5f5;
+            font-size: 14px;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 15px;
+        }
+        img.logo {
+            width: 100px;
+            margin: 15px auto;
+            display: block;
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
         }
 
-        return `
-          <a href="${href}" target="${isVideo ? '_self' : '_blank'}" rel="noopener noreferrer"
-             class="link-card ${l.color_theme}" style="animation-delay:${i * 0.06}s" ${onclick}>
-            <div class="link-icon">${l.emoji}</div>
-            <div class="link-info">
-              <div class="link-title">${l.title}</div>
-              ${l.subtitle ? `<div class="link-sub">${l.subtitle}</div>` : ''}
-            </div>
-            <span class="link-arrow">›</span>
-          </a>
-        `;
-      }).join('');
+        /* Tugmalar */
+        .btn {
+            display: block;
+            margin: 6px auto;
+            padding: 10px;
+            width: 80%;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .btn:hover { transform: scale(1.02); opacity: 0.9; }
+        .pdf { background: #dc3545; color: #fff; }
+        .video { background: #007bff; color: #fff; }
+        .instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); color: #fff; }
+        .survey { background: #007bff; color: #fff; }
+        .contact {
+            margin-top: 10px;
+            background: #FF6833;
+            color: black;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
 
-      document.getElementById('app').innerHTML = `
-        <div class="profile">
-          <div class="avatar">${profile.avatar_emoji}</div>
-          <h1>${profile.name}</h1>
-          <p>${profile.description}</p>
-          <div class="badge"><span>●</span> ${profile.badge_text}</div>
+        /* Store */
+        .store-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .store-box {
+            flex: 1;
+            background: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+        .store-box img { width: 120px; margin-bottom: 10px; }
+        .store-box a {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            background: #28a745;
+        }
+
+        /* ===== VIDEO SECTION ===== */
+        .video-section {
+            margin-top: 24px;
+            text-align: left;
+        }
+        .category-label {
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 1px;
+            margin: 18px 0 8px 4px;
+            text-align: left;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .video-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        .video-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+        }
+        .video-thumb {
+            position: relative;
+            padding-top: 56.25%;
+            background: #e9ecef;
+            overflow: hidden;
+        }
+        .video-thumb img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .play-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.2);
+            transition: background 0.2s;
+        }
+        .video-card:hover .play-overlay {
+            background: rgba(0,0,0,0.35);
+        }
+        .play-circle {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .play-circle svg {
+            width: 18px; height: 18px;
+            fill: #007bff;
+            margin-left: 2px;
+        }
+        .video-info {
+            padding: 8px 10px;
+        }
+        .video-title {
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 2px;
+        }
+        .video-desc {
+            font-size: 11px;
+            color: #888;
+            line-height: 1.3;
+        }
+        .attachment-btn {
+            display: inline-block;
+            margin: 4px 8px 8px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #f0f0f0;
+            color: #555;
+            font-size: 11px;
+            text-decoration: none;
+        }
+        .attachment-btn:hover { background: #e0e0e0; }
+
+        /* Loading & empty */
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+        }
+        .spinner {
+            display: inline-block;
+            width: 28px; height: 28px;
+            border: 3px solid #e9ecef;
+            border-top-color: #007bff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            width: 100%;
+            max-width: 640px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .modal-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            border-bottom: 1px solid #eee;
+        }
+        .modal-top h3 { font-size: 15px; margin: 0; }
+        .modal-close {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: #f0f0f0;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover { background: #e0e0e0; }
+        .modal-video {
+            position: relative;
+            padding-top: 56.25%;
+        }
+        .modal-video iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 480px) {
+            .video-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .video-title { font-size: 12px; }
+            .video-info { padding: 6px 8px; }
+            .container { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="https://raw.githubusercontent.com/Ikhtiyor-s/Nonbor/main/nonbor_logo.png" alt="NonBor Logo" class="logo">
+
+    <!-- Sotuvchi qo'llanmasi -->
+    <h2>📘 Sotuvchi qo'llanmasi</h2>
+
+    <!-- VIDEO DARSLIKLAR -->
+    <div class="video-section" id="videoSection">
+        <div class="loading" id="videoLoading">
+            <div class="spinner"></div>
+            <p style="margin-top: 8px;">Videolar yuklanmoqda...</p>
         </div>
-        <div class="links">${linksHtml}</div>
-        <div class="footer">
-          <a href="https://nonbor.uz/">nonbor.uz</a> · Barcha huquqlar himoyalangan
+    </div>
+
+    <!-- Ilovani yuklash -->
+    <h2>⬇️ Ilovani yuklab olish</h2>
+    <div class="store-container">
+        <div class="store-box">
+            <img src="https://raw.githubusercontent.com/Ikhtiyor-s/Nonbor/main/appstore.png" alt="App Store">
+            <a href="https://apps.apple.com/app/id6743842538" target="_blank">📱 Sotuvchi ilova</a>
+            <a href="https://apps.apple.com/app/id6743315956" target="_blank">📱 Mijoz ilova</a>
         </div>
-      `;
-    }
+        <div class="store-box">
+            <img src="https://raw.githubusercontent.com/Ikhtiyor-s/Nonbor/main/playmarket.png" alt="Play Market">
+            <a href="https://play.google.com/store/apps/details?id=uz.welltech.nonborbusiness" target="_blank">📱 Sotuvchi ilova</a>
+            <a href="https://play.google.com/store/apps/details?id=uz.welltech.nonbor.nonboruz" target="_blank">📱 Mijoz ilova</a>
+        </div>
+    </div>
 
-    // ─── Fetch data ─────────────────────────────────────────────────────────────
-    async function loadBio() {
-      try {
-        const res = await fetch(`${API_BASE}/api/bio`, { signal: AbortSignal.timeout(8000) });
-        if (!res.ok) throw new Error('API error');
-        const data = await res.json();
-        if (data.success) renderPage(data.profile, data.links);
-      } catch (e) {
-        // Fallback — static content
-        renderPage(
-          { name: 'Nonbor', description: 'Telegram bot platformasi', avatar_emoji: '🍽', badge_text: 'Faol' },
-          [
-            { emoji: '📱', title: 'Mijoz ilovasi', subtitle: 'nonbor.uz', url: 'https://nonbor.uz/', link_type: 'website', color_theme: 'green' },
-            { emoji: '💼', title: 'Biznes panel', subtitle: 'business.nonbor.uz', url: 'https://business.nonbor.uz/', link_type: 'website', color_theme: 'yellow' },
-          ]
-        );
-      }
-    }
+    <div style="margin-top: 14px;">
+        <a href="tel:+998948679300" class="contact">📲 Murojaat 1</a>
+        <a href="tel:+998909564222" class="contact">📲 Murojaat 2</a>
+    </div>
+</div>
 
-    loadBio();
-  </script>
+<!-- Video Modal -->
+<div class="modal-overlay" id="videoModal">
+    <div class="modal-box">
+        <div class="modal-top">
+            <h3 id="modalTitle">Video</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-video">
+            <iframe id="modalFrame" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============ CONFIG ============
+const API_URL = 'https://nonbor.uz';
+// ================================
+
+function getYouTubeId(url) {
+    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([^?&/#]+)/);
+    return m ? m[1] : null;
+}
+
+function getThumb(url) {
+    const id = getYouTubeId(url);
+    return id ? 'https://img.youtube.com/vi/' + id + '/mqdefault.jpg' : '';
+}
+
+function openModal(title, url) {
+    const id = getYouTubeId(url);
+    if (!id) { window.open(url, '_blank'); return; }
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalFrame').src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+    document.getElementById('videoModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('videoModal').classList.remove('active');
+    document.getElementById('modalFrame').src = '';
+    document.body.style.overflow = '';
+}
+
+document.getElementById('videoModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+});
+
+async function loadVideos() {
+    const section = document.getElementById('videoSection');
+    const loading = document.getElementById('videoLoading');
+
+    try {
+        const [catResp, vidResp] = await Promise.all([
+            fetch(API_URL + '/api/video-categories').then(r => r.json()),
+            fetch(API_URL + '/api/videos').then(r => r.json()),
+        ]);
+
+        const CATEGORIES = (catResp.success && catResp.categories)
+            ? catResp.categories.filter(c => c.is_active) : [];
+
+        if (!vidResp.success || !vidResp.videos || vidResp.videos.length === 0) {
+            loading.innerHTML = '';
+            return;
+        }
+
+        const videos = vidResp.videos.filter(v => v.is_active);
+        if (videos.length === 0) { loading.innerHTML = ''; return; }
+
+        const grouped = {};
+        videos.forEach(v => {
+            const cat = v.category || 'boshqa';
+            if (!grouped[cat]) grouped[cat] = [];
+            grouped[cat].push(v);
+        });
+
+        let html = '';
+        CATEGORIES.sort((a, b) => a.sort_order - b.sort_order).forEach(cat => {
+            if (!grouped[cat.slug]) return;
+            const items = grouped[cat.slug].sort((a, b) => a.sort_order - b.sort_order);
+            const label = (cat.emoji ? cat.emoji + ' ' : '') + cat.name;
+
+            html += '<div class="category-label">' + label + '</div>';
+            html += '<div class="video-grid">';
+
+            items.forEach(v => {
+                const thumb = getThumb(v.video_url);
+                const attachIcon = v.attachment_url
+                    ? (v.attachment_url.match(/\.(jpg|jpeg|png|webp|gif)$/i) ? '🖼' : '📄')
+                    : '';
+
+                html += '<a class="video-card" href="javascript:void(0)" onclick="openModal(\'' +
+                    v.title.replace(/'/g, "\\'") + "', '" + v.video_url.replace(/'/g, "\\'") + "')\">" +
+                    '<div class="video-thumb">' +
+                    (thumb ? '<img src="' + thumb + '" alt="' + v.title + '">' : '') +
+                    '<div class="play-overlay"><div class="play-circle">' +
+                    '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
+                    '</div></div></div>' +
+                    '<div class="video-info">' +
+                    '<div class="video-title">' + v.title + '</div>' +
+                    (v.description ? '<div class="video-desc">' + v.description + '</div>' : '') +
+                    '</div>' +
+                    (v.attachment_url
+                        ? '<a class="attachment-btn" href="' + v.attachment_url + '" target="_blank" onclick="event.stopPropagation()">' + attachIcon + ' Qo\'llanma</a>'
+                        : '') +
+                    '</a>';
+            });
+
+            html += '</div>';
+        });
+
+        loading.remove();
+        section.innerHTML += html;
+
+    } catch (err) {
+        loading.innerHTML = '';
+        console.log('Video API mavjud emas:', err.message);
+    }
+}
+
+loadVideos();
+</script>
+
 </body>
 </html>
