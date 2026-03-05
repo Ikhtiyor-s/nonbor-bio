@@ -1,9 +1,9 @@
 {
-  "exported_at": "2026-03-05T14:12:11.789Z",
+  "exported_at": "2026-03-05T16:46:44.459Z",
   "categories": [
     {
       "id": 1,
-      "name": "Boshlang'ich sozlamalar",
+      "name": "Ro'yhatdan o'tish",
       "slug": "boshlangich",
       "emoji": "🔧",
       "sort_order": 1,
@@ -63,9 +63,9 @@
     },
     {
       "id": 2,
-      "title": "Bot sozlamalarini o'zgartirish",
-      "description": "Til, valyuta, ish vaqti sozlash",
-      "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "title": "Biznes yaratish",
+      "description": "Sotuvchi ro'yhatdan o'tgandan so'ng o'z oshxonasini ro'yhatdan o'tkazadi va barcha sozlamarni to'ldirib chiqadi",
+      "video_url": "https://youtube.com/shorts/n81l4uT1XDA?feature=share",
       "category": "boshlangich",
       "sort_order": 2,
       "is_active": true,
