@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-05T16:46:44.459Z",
+  "exported_at": "2026-03-05T16:48:28.084Z",
   "categories": [
     {
       "id": 1,
@@ -93,9 +93,9 @@
     },
     {
       "id": 3,
-      "title": "Kategoriya qo'shish",
-      "description": "Menyu kategoriyalarini yaratish",
-      "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "title": "Ishlash vaqtlarini sozlash",
+      "description": "Sotuvchi restoranining ishlash vaqtiga qarab to'liq ish vaqtlarini belgilashi mumkin",
+      "video_url": "https://youtube.com/shorts/fv9xTwQH35M?feature=share",
       "category": "menyu",
       "sort_order": 1,
       "is_active": true,
