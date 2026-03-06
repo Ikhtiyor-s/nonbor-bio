@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T01:29:29.567Z",
+  "exported_at": "2026-03-06T01:31:42.008Z",
   "categories": [
     {
       "id": 1,
@@ -68,6 +68,16 @@
       "video_url": "https://youtube.com/shorts/n81l4uT1XDA?feature=share",
       "category": "boshlangich",
       "sort_order": 2,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 9,
+      "title": "Mijoz ro'yhatdan o'tish, buyurtma berish",
+      "description": "Mijoz sifatida ro'yhatdan o'tib maxsulotlarni ko'rish, tanlash hamda buyurtma berish",
+      "video_url": "https://youtube.com/shorts/uoSGVybFxz8?feature=share",
+      "category": "boshlangich",
+      "sort_order": 9,
       "is_active": true,
       "attachment_url": null
     },
