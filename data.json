@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T01:31:42.008Z",
+  "exported_at": "2026-03-06T01:32:17.965Z",
   "categories": [
     {
       "id": 1,
@@ -112,6 +112,16 @@
       "attachment_url": null
     },
     {
+      "id": 8,
+      "title": "Savdo statistikasini ko'rish",
+      "description": "Sotuvchi to'liq savdo jarayonini kuzatib ko'rib borishi mumkin. Barcha savda statistikasi bitta ilovada. Qancha savdo bo'ldi, qaysi maxsulot qancha sotildi, qancha daromad qilindi barchasini onlayn kuzatish mumkin",
+      "video_url": "https://youtube.com/shorts/9haU-lRfE2Y?feature=share",
+      "category": "buyurtma",
+      "sort_order": 4,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
       "id": 3,
       "title": "Ishlash vaqtlarini sozlash",
       "description": "Sotuvchi restoranining ishlash vaqtiga qarab to'liq ish vaqtlarini belgilashi mumkin",
@@ -128,16 +138,6 @@
       "video_url": "https://youtu.be/2n6s-DQQdGE",
       "category": "menyu",
       "sort_order": 2,
-      "is_active": true,
-      "attachment_url": null
-    },
-    {
-      "id": 8,
-      "title": "Savdo statistikasini ko'rish",
-      "description": "Sotuvchi to'liq savdo jarayonini kuzatib ko'rib borishi mumkin. Barcha savda statistikasi bitta ilovada. Qancha savdo bo'ldi, qaysi maxsulot qancha sotildi, qancha daromad qilindi barchasini onlayn kuzatish mumkin",
-      "video_url": "https://youtube.com/shorts/9haU-lRfE2Y?feature=share",
-      "category": "qoshimcha",
-      "sort_order": 4,
       "is_active": true,
       "attachment_url": null
     }
