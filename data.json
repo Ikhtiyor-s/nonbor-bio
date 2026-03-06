@@ -1,7 +1,147 @@
 {
-  "exported_at": "2026-03-06T02:38:20.611Z",
-  "categories": [],
-  "videos": [],
+  "exported_at": "2026-03-06T02:39:41.948Z",
+  "categories": [
+    {
+      "id": 1,
+      "name": "Ro'yhatdan o'tish",
+      "slug": "boshlangich",
+      "emoji": "🔧",
+      "sort_order": 1,
+      "is_active": true
+    },
+    {
+      "id": 2,
+      "name": "Menyu boshqaruvi",
+      "slug": "menyu",
+      "emoji": "📂",
+      "sort_order": 2,
+      "is_active": true
+    },
+    {
+      "id": 3,
+      "name": "Buyurtmalar",
+      "slug": "buyurtma",
+      "emoji": "🛒",
+      "sort_order": 3,
+      "is_active": true
+    },
+    {
+      "id": 4,
+      "name": "Yetkazib berish",
+      "slug": "yetkazish",
+      "emoji": "🚗",
+      "sort_order": 4,
+      "is_active": true
+    },
+    {
+      "id": 5,
+      "name": "Qo'shimcha funksiyalar",
+      "slug": "qoshimcha",
+      "emoji": "⭐",
+      "sort_order": 5,
+      "is_active": true
+    },
+    {
+      "id": 6,
+      "name": "Boshqa",
+      "slug": "boshqa",
+      "emoji": "📌",
+      "sort_order": 6,
+      "is_active": true
+    }
+  ],
+  "videos": [
+    {
+      "id": 1,
+      "title": "Ro'yhatdan o'tish",
+      "description": "Nonborda sotuvchi sifatida ro'yhatdan o'tish",
+      "video_url": "https://www.youtube.com/shorts/P_lMIj7qt7E",
+      "category": "boshlangich",
+      "sort_order": 1,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 2,
+      "title": "Biznes yaratish",
+      "description": "Sotuvchi ro'yhatdan o'tgandan so'ng o'z oshxonasini ro'yhatdan o'tkazadi va barcha sozlamarni to'ldirib chiqadi",
+      "video_url": "https://youtube.com/shorts/n81l4uT1XDA?feature=share",
+      "category": "boshlangich",
+      "sort_order": 2,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 9,
+      "title": "Mijoz ro'yhatdan o'tish, buyurtma berish",
+      "description": "Mijoz sifatida ro'yhatdan o'tib maxsulotlarni ko'rish, tanlash hamda buyurtma berish",
+      "video_url": "https://youtube.com/shorts/uoSGVybFxz8?feature=share",
+      "category": "boshlangich",
+      "sort_order": 9,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 5,
+      "title": "Mahsulotlarni vaqtinchalik o'chirish, yoqish",
+      "description": "Mahsulotlarni vaqtinchalik sotuvdan to'xtatish. Bu sotuvchi qaysi taomlarni sotishi haqida o'zi belgilab oladi hamda o'chirilgan maxsulotlar mijozda vaqtinchalik ko'rinmaydi. Qachonki shu mahsulotdan yana sotmoqchi bo'lsa birgina tugma bilan yana qayta yoqib qo'yishi mumkin.",
+      "video_url": "https://youtube.com/shorts/BTmehxunc7Q?feature=share",
+      "category": "buyurtma",
+      "sort_order": 1,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 6,
+      "title": "Rejalashtirilgan buyurtmani qabul qilish",
+      "description": "Sotuvchi buyurtmalarini taom tayyor bo'lishidan oldin buyurtmalarni qabul qilishi mumkin",
+      "video_url": "https://youtube.com/shorts/0Eu5lNu2G9o?feature=share",
+      "category": "buyurtma",
+      "sort_order": 2,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 7,
+      "title": "Buyurtmalar bilan ishlash",
+      "description": "Mijozlardan kelgan buyurtmalar bilan ishlash. Yangi buyurtma kelgandan boshlab mijozga topshirilgunga qadar bo'lgan to'liq jarayon",
+      "video_url": "https://youtube.com/shorts/ERXnBSx6SCo?feature=share",
+      "category": "buyurtma",
+      "sort_order": 3,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 8,
+      "title": "Savdo statistikasini ko'rish",
+      "description": "Sotuvchi to'liq savdo jarayonini kuzatib ko'rib borishi mumkin. Barcha savda statistikasi bitta ilovada. Qancha savdo bo'ldi, qaysi maxsulot qancha sotildi, qancha daromad qilindi barchasini onlayn kuzatish mumkin",
+      "video_url": "https://youtube.com/shorts/9haU-lRfE2Y?feature=share",
+      "category": "buyurtma",
+      "sort_order": 4,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 3,
+      "title": "Ishlash vaqtlarini sozlash",
+      "description": "Sotuvchi restoranining ishlash vaqtiga qarab to'liq ish vaqtlarini belgilashi mumkin",
+      "video_url": "https://youtube.com/shorts/fv9xTwQH35M?feature=share",
+      "category": "menyu",
+      "sort_order": 1,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 4,
+      "title": "Mahsulot qo'shish",
+      "description": "Yangi taom, rasm va narx kiritish",
+      "video_url": "https://youtu.be/2n6s-DQQdGE",
+      "category": "menyu",
+      "sort_order": 2,
+      "is_active": true,
+      "attachment_url": null
+    }
+  ],
   "bio": {
     "profile": {
       "name": "NonBor",
@@ -80,7 +220,7 @@
         "id": 12,
         "title": "Murojaat 1",
         "subtitle": "+998948679300",
-        "emoji": "📞",
+        "emoji": "📲",
         "url": "+998948679300",
         "link_type": "phone",
         "color_theme": "red",
