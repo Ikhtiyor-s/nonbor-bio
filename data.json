@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T02:27:11.399Z",
+  "exported_at": "2026-03-06T02:27:29.297Z",
   "categories": [
     {
       "id": 1,
@@ -176,7 +176,7 @@
         "id": 3,
         "title": "Sotuvchi ilova",
         "subtitle": "Play Market",
-        "emoji": "??",
+        "emoji": "💼",
         "url": "https://play.google.com/store/apps/details?id=uz.welltech.nonborbusiness",
         "link_type": "playmarket",
         "color_theme": "green",
