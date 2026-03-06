@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T02:27:00.228Z",
+  "exported_at": "2026-03-06T02:27:11.399Z",
   "categories": [
     {
       "id": 1,
@@ -165,7 +165,7 @@
         "id": 2,
         "title": "Mijoz ilova",
         "subtitle": "App Store",
-        "emoji": "??",
+        "emoji": "🛒",
         "url": "https://apps.apple.com/app/id6743315956",
         "link_type": "appstore",
         "color_theme": "blue",
