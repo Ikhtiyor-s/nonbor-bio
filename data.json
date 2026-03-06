@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T01:23:38.932Z",
+  "exported_at": "2026-03-06T01:26:10.032Z",
   "categories": [
     {
       "id": 1,
@@ -88,6 +88,16 @@
       "video_url": "https://youtube.com/shorts/0Eu5lNu2G9o?feature=share",
       "category": "buyurtma",
       "sort_order": 2,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 7,
+      "title": "Buyurtmalar bilan ishlash",
+      "description": "Mijozlardan kelgan buyurtmalar bilan ishlash. Yangi buyurtma kelgandan boshlab mijozga topshirilgunga qadar bo'lgan to'liq jarayon",
+      "video_url": "https://youtube.com/shorts/ERXnBSx6SCo?feature=share",
+      "category": "buyurtma",
+      "sort_order": 7,
       "is_active": true,
       "attachment_url": null
     },
