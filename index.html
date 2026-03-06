@@ -29,40 +29,11 @@
             color: #333;
         }
 
-        /* Tugmalar */
-        .btn {
-            display: block;
-            margin: 6px auto;
-            padding: 10px;
-            width: 80%;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s, opacity 0.2s;
-        }
-        .btn:hover { transform: scale(1.02); opacity: 0.9; }
-        .pdf { background: #dc3545; color: #fff; }
-        .video { background: #007bff; color: #fff; }
-        .instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); color: #fff; }
-        .survey { background: #007bff; color: #fff; }
-        .contact {
-            margin-top: 10px;
-            background: #FF6833;
-            color: black;
-            padding: 15px;
-            border-radius: 10px;
-            display: inline-block;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
         /* Store */
         .store-container {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 10px;
             gap: 10px;
         }
         .store-box {
@@ -82,7 +53,38 @@
             font-weight: bold;
             color: #fff;
             background: #28a745;
+            transition: opacity 0.2s;
         }
+        .store-box a:hover { opacity: 0.85; }
+
+        /* Web sayt va telefon tugmalari */
+        .link-btn {
+            display: block;
+            margin: 6px auto;
+            padding: 12px 16px;
+            width: 80%;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s, opacity 0.2s;
+            text-align: center;
+        }
+        .link-btn:hover { transform: scale(1.02); opacity: 0.9; }
+        .contact-btn {
+            display: inline-block;
+            margin: 5px;
+            background: #FF6833;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+        .contact-btn:hover { opacity: 0.85; }
 
         /* ===== VIDEO SECTION ===== */
         .video-section {
@@ -248,6 +250,9 @@
             border: none;
         }
 
+        /* Hidden sections until data loads */
+        .dynamic-section { display: none; }
+
         @media (max-width: 480px) {
             .video-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
             .video-title { font-size: 12px; }
@@ -261,49 +266,28 @@
 <div class="container">
     <img src="https://raw.githubusercontent.com/Ikhtiyor-s/Nonbor/main/nonbor_logo.png" alt="NonBor Logo" class="logo">
 
-    <!-- Sotuvchi qo'llanmasi -->
+    <!-- Sarlavha -->
     <h2>📘 Nonbor qo'llanmasi</h2>
 
     <!-- VIDEO DARSLIKLAR -->
     <div class="video-section" id="videoSection">
         <div class="loading" id="videoLoading">
             <div class="spinner"></div>
-            <p style="margin-top: 8px;">Videolar yuklanmoqda...</p>
+            <p style="margin-top: 8px;">Yuklanmoqda...</p>
         </div>
     </div>
 
-    <!-- Ilovani yuklash -->
-    <h2>⬇️ Ilovani yuklab olish</h2>
-    <div class="store-container">
-        <div class="store-box">
-            <img src="https://raw.githubusercontent.com/Ikhtiyor-s/Nonbor/main/appstore.png" alt="App Store">
-            <a href="https://apps.apple.com/app/id6743842538" target="_blank">📱 Sotuvchi ilova</a>
-            <a href="https://apps.apple.com/app/id6743315956" target="_blank">📱 Mijoz ilova</a>
-        </div>
-        <div class="store-box">
-            <img src="https://raw.githubusercontent.com/Ikhtiyor-s/Nonbor/main/playmarket.png" alt="Play Market">
-            <a href="https://play.google.com/store/apps/details?id=uz.welltech.nonborbusiness" target="_blank">📱 Sotuvchi ilova</a>
-            <a href="https://play.google.com/store/apps/details?id=uz.welltech.nonbor.nonboruz" target="_blank">📱 Mijoz ilova</a>
-        </div>
-    </div>
+    <!-- Ilovani yuklash (dinamik) -->
+    <div id="appSection" class="dynamic-section"></div>
 
-    <!-- Web saytlar -->
-    <h2 style="margin-top: 20px;">🌐 Web saytlar</h2>
-    <div class="store-container" style="margin-top: 10px;">
-        <div class="store-box">
-            <div style="font-size: 36px; margin-bottom: 8px;">🛒</div>
-            <a href="https://nonbor.uz/" target="_blank">🌐 Mijoz platformasi</a>
-        </div>
-        <div class="store-box">
-            <div style="font-size: 36px; margin-bottom: 8px;">💼</div>
-            <a href="https://business.nonbor.uz/" target="_blank">🌐 Biznes panel</a>
-        </div>
-    </div>
+    <!-- Web saytlar (dinamik) -->
+    <div id="websiteSection" class="dynamic-section"></div>
 
-    <div style="margin-top: 14px;">
-        <a href="tel:+998948679300" class="contact">📲 Murojaat 1</a>
-        <a href="tel:+998909564222" class="contact">📲 Murojaat 2</a>
-    </div>
+    <!-- Boshqa havolalar (dinamik) -->
+    <div id="otherLinksSection" class="dynamic-section"></div>
+
+    <!-- Telefon raqamlar (dinamik) -->
+    <div id="phoneSection" class="dynamic-section"></div>
 </div>
 
 <!-- Video Modal -->
@@ -321,17 +305,17 @@
 
 <script>
 function getYouTubeId(url) {
-    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([^?&/#]+)/);
+    var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([^?&/#]+)/);
     return m ? m[1] : null;
 }
 
 function getThumb(url) {
-    const id = getYouTubeId(url);
+    var id = getYouTubeId(url);
     return id ? 'https://img.youtube.com/vi/' + id + '/mqdefault.jpg' : '';
 }
 
 function openModal(title, url) {
-    const id = getYouTubeId(url);
+    var id = getYouTubeId(url);
     if (!id) { window.open(url, '_blank'); return; }
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalFrame').src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
@@ -352,45 +336,53 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
 });
 
+function esc(str) {
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+// ===== VIDEO RENDER =====
 function renderVideos(categories, videos) {
-    const section = document.getElementById('videoSection');
-    const loading = document.getElementById('videoLoading');
+    var section = document.getElementById('videoSection');
+    var loading = document.getElementById('videoLoading');
 
-    const activeCats = categories.filter(c => c.is_active).sort((a, b) => a.sort_order - b.sort_order);
-    const activeVideos = videos.filter(v => v.is_active);
+    var activeCats = categories.filter(function(c) { return c.is_active; })
+        .sort(function(a, b) { return a.sort_order - b.sort_order; });
+    var activeVideos = videos.filter(function(v) { return v.is_active; });
 
-    if (activeVideos.length === 0) { loading.innerHTML = ''; return; }
+    if (activeVideos.length === 0) { if (loading) loading.innerHTML = ''; return; }
 
-    const grouped = {};
-    activeVideos.forEach(v => {
-        const cat = v.category || 'boshqa';
+    var grouped = {};
+    activeVideos.forEach(function(v) {
+        var cat = v.category || 'boshqa';
         if (!grouped[cat]) grouped[cat] = [];
         grouped[cat].push(v);
     });
 
-    let html = '';
-    activeCats.forEach(cat => {
+    var html = '';
+    activeCats.forEach(function(cat) {
         if (!grouped[cat.slug]) return;
-        const items = grouped[cat.slug].sort((a, b) => a.sort_order - b.sort_order);
-        const label = (cat.emoji ? cat.emoji + ' ' : '') + cat.name;
+        var items = grouped[cat.slug].sort(function(a, b) { return a.sort_order - b.sort_order; });
+        var label = (cat.emoji ? cat.emoji + ' ' : '') + esc(cat.name);
 
         html += '<div class="category-label">' + label + '</div>';
         html += '<div class="video-grid">';
-        items.forEach(v => {
-            const thumb = getThumb(v.video_url);
-            const attachIcon = v.attachment_url
+        items.forEach(function(v) {
+            var thumb = getThumb(v.video_url);
+            var attachIcon = v.attachment_url
                 ? (v.attachment_url.match(/\.(jpg|jpeg|png|webp|gif)$/i) ? '🖼' : '📄')
                 : '';
             html += '<a class="video-card" href="javascript:void(0)" onclick="openModal(\'' +
-                v.title.replace(/'/g, "\\'") + "', '" + v.video_url.replace(/'/g, "\\'") + "')\">" +
+                esc(v.title).replace(/'/g, "\\'") + "', '" + v.video_url.replace(/'/g, "\\'") + "')\">" +
                 '<div class="video-thumb">' +
-                (thumb ? '<img src="' + thumb + '" alt="' + v.title + '">' : '') +
+                (thumb ? '<img src="' + thumb + '" alt="' + esc(v.title) + '">' : '') +
                 '<div class="play-overlay"><div class="play-circle">' +
                 '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
                 '</div></div></div>' +
                 '<div class="video-info">' +
-                '<div class="video-title">' + v.title + '</div>' +
-                (v.description ? '<div class="video-desc">' + v.description + '</div>' : '') +
+                '<div class="video-title">' + esc(v.title) + '</div>' +
+                (v.description ? '<div class="video-desc">' + esc(v.description) + '</div>' : '') +
                 '</div>' +
                 (v.attachment_url
                     ? '<a class="attachment-btn" href="' + v.attachment_url + '" target="_blank" onclick="event.stopPropagation()">' + attachIcon + ' Qo\'llanma</a>'
@@ -404,21 +396,125 @@ function renderVideos(categories, videos) {
     section.innerHTML += html;
 }
 
-async function loadVideos() {
-    const loading = document.getElementById('videoLoading');
-    try {
-        // Statik data.json faylidan o'qish (CORS muammosi yo'q)
-        const resp = await fetch('./data.json?v=' + Date.now());
-        if (!resp.ok) throw new Error('data.json topilmadi');
-        const data = await resp.json();
-        renderVideos(data.categories || [], data.videos || []);
-    } catch (err) {
-        if (loading) loading.innerHTML = '';
-        console.log('data.json mavjud emas:', err.message);
+// ===== BIO LINKS RENDER =====
+function renderBioLinks(links) {
+    if (!links || links.length === 0) return;
+
+    var active = links.filter(function(l) { return l.is_active; })
+        .sort(function(a, b) { return a.sort_order - b.sort_order; });
+
+    // Guruhlab olish
+    var appstore = active.filter(function(l) { return l.link_type === 'appstore'; });
+    var playmarket = active.filter(function(l) { return l.link_type === 'playmarket'; });
+    var websites = active.filter(function(l) { return l.link_type === 'website'; });
+    var phones = active.filter(function(l) { return l.link_type === 'phone'; });
+    var others = active.filter(function(l) {
+        return ['telegram', 'youtube', 'drive', 'instagram', 'other'].indexOf(l.link_type) >= 0;
+    });
+
+    // === ILOVALAR ===
+    if (appstore.length > 0 || playmarket.length > 0) {
+        var appHtml = '<h2 style="margin-top:20px;">⬇️ Ilovani yuklab olish</h2>';
+        appHtml += '<div class="store-container">';
+
+        if (appstore.length > 0) {
+            appHtml += '<div class="store-box">';
+            appHtml += '<img src="https://raw.githubusercontent.com/Ikhtiyor-s/Nonbor/main/appstore.png" alt="App Store">';
+            appstore.forEach(function(l) {
+                appHtml += '<a href="' + l.url + '" target="_blank">' + (l.emoji || '📱') + ' ' + esc(l.title) + '</a>';
+            });
+            appHtml += '</div>';
+        }
+
+        if (playmarket.length > 0) {
+            appHtml += '<div class="store-box">';
+            appHtml += '<img src="https://raw.githubusercontent.com/Ikhtiyor-s/Nonbor/main/playmarket.png" alt="Play Market">';
+            playmarket.forEach(function(l) {
+                appHtml += '<a href="' + l.url + '" target="_blank">' + (l.emoji || '📱') + ' ' + esc(l.title) + '</a>';
+            });
+            appHtml += '</div>';
+        }
+
+        appHtml += '</div>';
+        var appSection = document.getElementById('appSection');
+        appSection.innerHTML = appHtml;
+        appSection.style.display = 'block';
+    }
+
+    // === WEB SAYTLAR ===
+    if (websites.length > 0) {
+        var webHtml = '<h2 style="margin-top:20px;">🌐 Web saytlar</h2>';
+        webHtml += '<div class="store-container" style="margin-top:10px;">';
+        websites.forEach(function(l) {
+            webHtml += '<div class="store-box">';
+            webHtml += '<div style="font-size:36px;margin-bottom:8px;">' + (l.emoji || '🌐') + '</div>';
+            webHtml += '<a href="' + l.url + '" target="_blank">🌐 ' + esc(l.title) + '</a>';
+            webHtml += '</div>';
+        });
+        webHtml += '</div>';
+        var websiteSection = document.getElementById('websiteSection');
+        websiteSection.innerHTML = webHtml;
+        websiteSection.style.display = 'block';
+    }
+
+    // === BOSHQA HAVOLALAR (telegram, youtube, drive, instagram, other) ===
+    if (others.length > 0) {
+        var otherHtml = '<h2 style="margin-top:20px;">🔗 Foydali havolalar</h2>';
+        var colorMap = {
+            blue: '#007bff', green: '#28a745', purple: '#8B5CF6',
+            yellow: '#F59E0B', red: '#dc3545', gray: '#6c757d'
+        };
+        others.forEach(function(l) {
+            var bg = colorMap[l.color_theme] || '#007bff';
+            otherHtml += '<a class="link-btn" href="' + l.url + '" target="_blank" style="background:' + bg + ';">';
+            otherHtml += (l.emoji || '🔗') + ' ' + esc(l.title);
+            if (l.subtitle) otherHtml += '<br><span style="font-size:11px;font-weight:normal;opacity:0.85;">' + esc(l.subtitle) + '</span>';
+            otherHtml += '</a>';
+        });
+        var otherSection = document.getElementById('otherLinksSection');
+        otherSection.innerHTML = otherHtml;
+        otherSection.style.display = 'block';
+    }
+
+    // === TELEFON RAQAMLAR ===
+    if (phones.length > 0) {
+        var phoneHtml = '<h2 style="margin-top:20px;">📞 Murojaat uchun telefon</h2><div style="margin-top:14px;">';
+        phones.forEach(function(l) {
+            var tel = l.url.replace(/\s/g, '');
+            if (tel.indexOf('tel:') !== 0) tel = 'tel:' + tel;
+            var displayNum = l.url.replace(/\s/g, '');
+            if (displayNum.indexOf('tel:') === 0) displayNum = displayNum.substring(4);
+            phoneHtml += '<a href="' + tel + '" class="contact-btn">' + (l.emoji || '📲') + ' ' + esc(displayNum) + '</a>';
+        });
+        phoneHtml += '</div>';
+        var phoneSection = document.getElementById('phoneSection');
+        phoneSection.innerHTML = phoneHtml;
+        phoneSection.style.display = 'block';
     }
 }
 
-loadVideos();
+// ===== LOAD DATA =====
+async function loadData() {
+    var loading = document.getElementById('videoLoading');
+    try {
+        var resp = await fetch('./data.json?v=' + Date.now());
+        if (!resp.ok) throw new Error('data.json topilmadi');
+        var data = await resp.json();
+
+        // Videolar
+        renderVideos(data.categories || [], data.videos || []);
+
+        // Bio havolalar
+        if (data.bio && data.bio.links) {
+            renderBioLinks(data.bio.links);
+        }
+    } catch (err) {
+        if (loading) loading.innerHTML = '';
+        console.log('data.json xatolik:', err.message);
+    }
+}
+
+loadData();
 </script>
 
 </body>
