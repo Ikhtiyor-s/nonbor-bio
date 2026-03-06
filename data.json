@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T01:32:17.965Z",
+  "exported_at": "2026-03-06T01:36:02.330Z",
   "categories": [
     {
       "id": 1,
@@ -83,8 +83,8 @@
     },
     {
       "id": 5,
-      "title": "Maxsulotlarni vaqtinchalik o'chirish, yoqish",
-      "description": "Maxsulotlarni vaqtinchalik sotuvdan to'xtatish",
+      "title": "Mahsulotlarni vaqtinchalik o'chirish, yoqish",
+      "description": "Mahsulotlarni vaqtinchalik sotuvdan to'xtatish. Bu sotuvchi qaysi taomlarni sotishi haqida o'zi belgilab oladi hamda o'chirilgan maxsulotlar mijozda vaqtinchalik ko'rinmaydi. Qachonki shu mahsulotdan yana sotmoqchi bo'lsa birgina tugma bilan yana qayta yoqib qo'yishi mumkin.",
       "video_url": "https://youtube.com/shorts/BTmehxunc7Q?feature=share",
       "category": "buyurtma",
       "sort_order": 1,
