@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T01:19:31.320Z",
+  "exported_at": "2026-03-06T01:20:55.255Z",
   "categories": [
     {
       "id": 1,
@@ -73,9 +73,9 @@
     },
     {
       "id": 5,
-      "title": "Buyurtma berish jarayoni",
-      "description": "Mijoz qanday buyurtma beradi",
-      "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "title": "Maxsulotlarni vaqtinchalik o'chirish, yoqish",
+      "description": "Maxsulotlarni vaqtinchalik sotuvdan to'xtatish",
+      "video_url": "https://youtube.com/shorts/BTmehxunc7Q?feature=share",
       "category": "buyurtma",
       "sort_order": 1,
       "is_active": true,
