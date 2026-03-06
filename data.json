@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T01:20:55.255Z",
+  "exported_at": "2026-03-06T01:23:38.932Z",
   "categories": [
     {
       "id": 1,
@@ -83,9 +83,9 @@
     },
     {
       "id": 6,
-      "title": "Buyurtmani qabul qilish",
-      "description": "Yangi buyurtmalarni ko'rish va tasdiqlash",
-      "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "title": "Rejalashtirilgan buyurtmani qabul qilish",
+      "description": "Sotuvchi buyurtmalarini taom tayyor bo'lishidan oldin buyurtmalarni qabul qilishi mumkin",
+      "video_url": "https://youtube.com/shorts/0Eu5lNu2G9o?feature=share",
       "category": "buyurtma",
       "sort_order": 2,
       "is_active": true,
