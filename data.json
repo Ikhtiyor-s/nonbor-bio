@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T01:26:26.074Z",
+  "exported_at": "2026-03-06T01:29:11.145Z",
   "categories": [
     {
       "id": 1,
@@ -118,6 +118,16 @@
       "video_url": "https://youtu.be/2n6s-DQQdGE",
       "category": "menyu",
       "sort_order": 2,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 8,
+      "title": "Savdo statistikasini ko'rish",
+      "description": "Sotuvchi to'liq savdo jarayonini kuzatib ko'rib borishi mumkin. Barcha savda statistikasi bitta ilovada. Qancha savdo bo'ldi, qaysi maxsulot qancha sotildi, qancha daromad qilindi barchasini onlayn kuzatish mumkin",
+      "video_url": "https://youtube.com/shorts/9haU-lRfE2Y?feature=share",
+      "category": "qoshimcha",
+      "sort_order": 8,
       "is_active": true,
       "attachment_url": null
     }
