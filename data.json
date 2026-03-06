@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T01:36:51.440Z",
+  "exported_at": "2026-03-06T02:05:32.953Z",
   "categories": [
     {
       "id": 1,
@@ -141,5 +141,103 @@
       "is_active": true,
       "attachment_url": null
     }
-  ]
+  ],
+  "bio": {
+    "profile": {
+      "name": "NonBor",
+      "description": "Telegram bot platformasi",
+      "avatar_emoji": "🍽",
+      "badge_text": "Faol"
+    },
+    "links": [
+      {
+        "id": 1,
+        "title": "Sotuvchi ilova",
+        "subtitle": "App Store",
+        "emoji": "??",
+        "url": "https://apps.apple.com/app/id6743842538",
+        "link_type": "appstore",
+        "color_theme": "blue",
+        "sort_order": 1,
+        "is_active": true
+      },
+      {
+        "id": 2,
+        "title": "Mijoz ilova",
+        "subtitle": "App Store",
+        "emoji": "??",
+        "url": "https://apps.apple.com/app/id6743315956",
+        "link_type": "appstore",
+        "color_theme": "blue",
+        "sort_order": 2,
+        "is_active": true
+      },
+      {
+        "id": 3,
+        "title": "Sotuvchi ilova",
+        "subtitle": "Play Market",
+        "emoji": "??",
+        "url": "https://play.google.com/store/apps/details?id=uz.welltech.nonborbusiness",
+        "link_type": "playmarket",
+        "color_theme": "green",
+        "sort_order": 3,
+        "is_active": true
+      },
+      {
+        "id": 4,
+        "title": "Mijoz ilova",
+        "subtitle": "Play Market",
+        "emoji": "??",
+        "url": "https://play.google.com/store/apps/details?id=uz.welltech.nonbor.nonboruz",
+        "link_type": "playmarket",
+        "color_theme": "green",
+        "sort_order": 4,
+        "is_active": true
+      },
+      {
+        "id": 5,
+        "title": "Mijoz platformasi",
+        "subtitle": "nonbor.uz",
+        "emoji": "??",
+        "url": "https://nonbor.uz/",
+        "link_type": "website",
+        "color_theme": "green",
+        "sort_order": 5,
+        "is_active": true
+      },
+      {
+        "id": 6,
+        "title": "Biznes panel",
+        "subtitle": "business.nonbor.uz",
+        "emoji": "??",
+        "url": "https://business.nonbor.uz/",
+        "link_type": "website",
+        "color_theme": "yellow",
+        "sort_order": 6,
+        "is_active": true
+      },
+      {
+        "id": 7,
+        "title": "Murojaat 1",
+        "subtitle": "+998948679300",
+        "emoji": "??",
+        "url": "+998948679300",
+        "link_type": "phone",
+        "color_theme": "red",
+        "sort_order": 7,
+        "is_active": true
+      },
+      {
+        "id": 8,
+        "title": "Murojaat 2",
+        "subtitle": "+998909564222",
+        "emoji": "??",
+        "url": "+998909564222",
+        "link_type": "phone",
+        "color_theme": "red",
+        "sort_order": 8,
+        "is_active": true
+      }
+    ]
+  }
 }
