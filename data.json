@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-06T02:40:54.852Z",
+  "exported_at": "2026-03-07T13:50:25.839Z",
   "categories": [
     {
       "id": 1,
@@ -138,6 +138,16 @@
       "video_url": "https://youtu.be/2n6s-DQQdGE",
       "category": "menyu",
       "sort_order": 2,
+      "is_active": true,
+      "attachment_url": null
+    },
+    {
+      "id": 10,
+      "title": "Poster integratsiya",
+      "description": "Poster tizimidan foydalanuvchi barcha oshxona, kafe, restoranlarni Nonbor bilan integratsiya qilgan holda barcha maxsulotlarni oson ko'chirish",
+      "video_url": "https://youtu.be/8tNGP3v1S9M",
+      "category": "qoshimcha",
+      "sort_order": 10,
       "is_active": true,
       "attachment_url": null
     }
