@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-06-25T11:09:17.820Z",
+  "exported_at": "2026-06-25T11:09:28.979Z",
   "categories": [
     {
       "id": 1,
@@ -243,17 +243,6 @@
         "subtitle": "+9989783331002",
         "emoji": "📲",
         "url": "+9989783331002",
-        "link_type": "phone",
-        "color_theme": "red",
-        "sort_order": 8,
-        "is_active": true
-      },
-      {
-        "id": 10,
-        "title": "Murojaat 1",
-        "subtitle": "+998948679300",
-        "emoji": "📲",
-        "url": "+998948679300",
         "link_type": "phone",
         "color_theme": "red",
         "sort_order": 8,
