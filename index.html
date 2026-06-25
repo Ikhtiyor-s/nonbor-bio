@@ -470,6 +470,7 @@ function renderBioLinks(links) {
     var playmarket = active.filter(function(l) { return l.link_type === 'playmarket'; });
     var websites = active.filter(function(l) { return l.link_type === 'website'; });
     var phones = active.filter(function(l) { return l.link_type === 'phone'; });
+    var supportTelegrams = active.filter(function(l) { return l.link_type === 'telegram_support'; });
     var others = active.filter(function(l) {
         return ['telegram', 'youtube', 'drive', 'instagram', 'other'].indexOf(l.link_type) >= 0;
     });
@@ -538,16 +539,38 @@ function renderBioLinks(links) {
         otherSection.style.display = 'block';
     }
 
-    // === TELEFON RAQAMLAR ===
-    if (phones.length > 0) {
-        var phoneHtml = '<h2 style="margin-top:20px;">📞 Murojaat uchun telefon</h2><div style="margin-top:14px;">';
+    // === MUROJAAT (Telefon + Telegram) ===
+    if (phones.length > 0 || supportTelegrams.length > 0) {
+        var phoneHtml = '<h2 style="margin-top:20px;">📞 Murojaat uchun</h2>';
+        phoneHtml += '<div class="store-container" style="margin-top:10px;">';
+
         phones.forEach(function(l) {
             var tel = l.url.replace(/\s/g, '');
             if (tel.indexOf('tel:') !== 0) tel = 'tel:' + tel;
             var displayNum = l.url.replace(/\s/g, '');
             if (displayNum.indexOf('tel:') === 0) displayNum = displayNum.substring(4);
-            phoneHtml += '<a href="' + tel + '" class="contact-btn">' + (l.emoji || '📲') + ' ' + esc(displayNum) + '</a>';
+            phoneHtml += '<a href="' + tel + '" class="store-box" style="text-decoration:none;color:inherit;display:block;">';
+            phoneHtml += '<div style="font-size:36px;margin-bottom:8px;">' + (l.emoji || '📞') + '</div>';
+            phoneHtml += '<div style="font-weight:bold;margin-bottom:6px;">' + esc(l.title || 'Telefon raqam') + '</div>';
+            phoneHtml += '<div class="link-btn" style="background:#FF6833;width:100%;margin:0;display:block;">' + esc(displayNum) + '</div>';
+            phoneHtml += '</a>';
         });
+
+        var tgIcon = '<svg width="44" height="44" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">' +
+            '<defs><linearGradient id="tg-grad" x1="120" y1="0" x2="120" y2="240" gradientUnits="userSpaceOnUse">' +
+            '<stop offset="0" stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs>' +
+            '<circle cx="120" cy="120" r="120" fill="url(#tg-grad)"/>' +
+            '<path fill="#fff" d="M54 116.5l128.4-49.5c6-2.2 11.2 1.5 9.3 10.5l-21.8 102.8c-1.6 7.4-6 9.2-12.2 5.7l-33.7-24.8-16.3 15.7c-1.8 1.8-3.3 3.3-6.8 3.3l2.4-34.4 62.7-56.6c2.7-2.4-.6-3.8-4.2-1.4l-77.5 48.8-33.4-10.4c-7.3-2.3-7.4-7.3 1.5-10.7z"/>' +
+            '</svg>';
+
+        supportTelegrams.forEach(function(l) {
+            phoneHtml += '<a href="' + l.url + '" target="_blank" class="store-box" style="text-decoration:none;color:inherit;display:block;">';
+            phoneHtml += '<div style="margin-bottom:8px;line-height:0;">' + tgIcon + '</div>';
+            phoneHtml += '<div style="font-weight:bold;margin-bottom:6px;">' + esc(l.title || 'Telegram') + '</div>';
+            phoneHtml += '<div class="link-btn" style="background:#229ED9;width:100%;margin:0;display:block;">' + esc(l.subtitle || l.url) + '</div>';
+            phoneHtml += '</a>';
+        });
+
         phoneHtml += '</div>';
         var phoneSection = document.getElementById('phoneSection');
         phoneSection.innerHTML = phoneHtml;
