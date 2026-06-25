@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-06-25T10:08:22.249Z",
+  "exported_at": "2026-06-25T10:08:27.474Z",
   "categories": [
     {
       "id": 1,
@@ -227,17 +227,6 @@
         "is_active": true
       },
       {
-        "id": 7,
-        "title": "Murojaat 1",
-        "subtitle": "+998948679300",
-        "emoji": "📲",
-        "url": "+998948679300",
-        "link_type": "phone",
-        "color_theme": "red",
-        "sort_order": 7,
-        "is_active": true
-      },
-      {
         "id": 9,
         "title": "Yangi hamkorlik uchun",
         "subtitle": "",
@@ -246,6 +235,17 @@
         "link_type": "website",
         "color_theme": "blue",
         "sort_order": 7,
+        "is_active": true
+      },
+      {
+        "id": 7,
+        "title": "Murojaat 1",
+        "subtitle": "+998948679300",
+        "emoji": "📲",
+        "url": "+998948679300",
+        "link_type": "phone",
+        "color_theme": "red",
+        "sort_order": 8,
         "is_active": true
       },
       {
