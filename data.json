@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-06-25T11:10:05.244Z",
+  "exported_at": "2026-06-25T11:11:03.942Z",
   "categories": [
     {
       "id": 1,
@@ -255,7 +255,7 @@
         "emoji": "✈️",
         "url": "https://t.me/NonborSupportBot",
         "link_type": "telegram",
-        "color_theme": "red",
+        "color_theme": "yellow",
         "sort_order": 8,
         "is_active": true
       }
