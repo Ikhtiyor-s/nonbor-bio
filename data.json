@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-06-25T11:09:51.410Z",
+  "exported_at": "2026-06-25T11:09:59.651Z",
   "categories": [
     {
       "id": 1,
@@ -256,7 +256,7 @@
         "url": "https://t.me/NonborSupportBot",
         "link_type": "telegram",
         "color_theme": "red",
-        "sort_order": 10,
+        "sort_order": 8,
         "is_active": true
       }
     ]
