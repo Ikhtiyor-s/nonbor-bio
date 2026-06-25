@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-06-25T11:09:28.979Z",
+  "exported_at": "2026-06-25T11:09:35.843Z",
   "categories": [
     {
       "id": 1,
@@ -255,17 +255,6 @@
         "emoji": "✈️",
         "url": "https://t.me/NonborSupportBot",
         "link_type": "telegram",
-        "color_theme": "red",
-        "sort_order": 10,
-        "is_active": true
-      },
-      {
-        "id": 11,
-        "title": "Murojaat 2",
-        "subtitle": "+998909564222",
-        "emoji": "📲",
-        "url": "+998909564222",
-        "link_type": "phone",
         "color_theme": "red",
         "sort_order": 10,
         "is_active": true
