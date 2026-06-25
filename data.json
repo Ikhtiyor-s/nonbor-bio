@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-06-25T10:08:12.471Z",
+  "exported_at": "2026-06-25T10:08:22.249Z",
   "categories": [
     {
       "id": 1,
@@ -245,7 +245,7 @@
         "url": "https://partners.nonbor.uz/",
         "link_type": "website",
         "color_theme": "blue",
-        "sort_order": 9,
+        "sort_order": 7,
         "is_active": true
       },
       {
